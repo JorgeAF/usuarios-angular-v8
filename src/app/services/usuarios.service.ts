@@ -35,6 +35,17 @@ actualizarUsuario(usuario: UsuarioModel){
 }
   
 
+getUsuarios(){
+  return this.http.get(`${this.url }/usuarios.json`)
+          .pipe(
+          map( this.crearArreglo )
+  );
+}
 
+private crearArreglo( usuariosObj: object) {
+  
+  return 'Hola mundo';
+
+}
 
 }

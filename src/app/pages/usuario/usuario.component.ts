@@ -3,6 +3,11 @@ import { UsuarioModel } from '../../models/usuario.model';
 import { NgForm } from '@angular/forms';
 import { UsuariosService } from '../../services/usuarios.service';
 
+import Swal from 'sweetalert2';
+import { Observable } from 'rxjs';
+import { analyzeAndValidateNgModules } from '@angular/compiler';
+import { Title } from '@angular/platform-browser';
+
 @Component({
   selector: 'jor-usuario',
   templateUrl: './usuario.component.html',
@@ -27,20 +32,32 @@ export class UsuarioComponent implements OnInit {
       return;
     }
 
+    // mensaje de alertas
+    Swal.fire({
+      title: 'Espere',
+      text : 'Guardando Informacion',
+      type : 'info',
+      allowOutsideClick: false
+    });
+
+    Swal.showLoading();
+
+    let peticion: Observable<any> ;
+
     if (this.usuario.id) {
-      this.usuariosService.actualizarUsuario(this.usuario)
-          .subscribe(resp =>{
-            console.log(resp);
-          })
+      peticion = this.usuariosService.actualizarUsuario(this.usuario);
     } else {
-      
-      this.usuariosService.crearUsuario(this.usuario)
-          .subscribe(resp =>{
-            console.log(resp);
-            this.usuario = resp;
-          })
+      peticion = this.usuariosService.crearUsuario(this.usuario);
     }
 
+    peticion.subscribe(resp =>{
+      Swal.fire({
+        title: this.usuario.nombre,
+        text: 'Se actualizo correctamente',
+        type: 'success'
+      });
+
+    });
 
 
   }

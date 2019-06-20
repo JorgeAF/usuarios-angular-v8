@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { UsuarioModel } from '../../models/usuario.model';
+import { ActivatedRoute } from '@angular/router';
 import { NgForm } from '@angular/forms';
+import { Observable } from 'rxjs';
+
+import { UsuarioModel } from '../../models/usuario.model';
 import { UsuariosService } from '../../services/usuarios.service';
 
 import Swal from 'sweetalert2';
-import { Observable } from 'rxjs';
-import { analyzeAndValidateNgModules } from '@angular/compiler';
-import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'jor-usuario',
@@ -19,10 +19,25 @@ export class UsuarioComponent implements OnInit {
   usuario: UsuarioModel = new UsuarioModel();
 
 
-  constructor(private usuariosService: UsuariosService) { }
+  constructor(private usuariosService: UsuariosService,
+              private route: ActivatedRoute ) { }
 
   ngOnInit() {
+  
+    const id = this.route.snapshot.paramMap.get('id');
+
+    if ( id !== 'nuevo') {
+
+      this.usuariosService.getUsuario( id )
+        .subscribe( (resp: UsuarioModel) => {
+        this.usuario = resp;
+        this.usuario.id = id;
+      });
+    }
+    
+
   }
+
 
   guardar(form:NgForm) {
 
@@ -52,8 +67,8 @@ export class UsuarioComponent implements OnInit {
 
     peticion.subscribe(resp =>{
       Swal.fire({
-        title: this.usuario.nombre,
-        text: 'Se actualizo correctamente',
+        title: this.usuario.nombres,
+        text: 'Se guardo correctamente',
         type: 'success'
       });
 

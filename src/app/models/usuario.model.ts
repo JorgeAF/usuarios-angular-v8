@@ -2,10 +2,13 @@
 
 export class UsuarioModel{
     id: string;
-    nombre: string;
-    apellidos: string;
+    nombres: string;
+    paterno: string;
+    materno: string;
+    ci: string;
+    telefonofij: number;
+    celular: number;
     correo: string;
     clave: string;
-    telefono: number;
 
 }

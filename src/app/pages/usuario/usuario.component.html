@@ -31,24 +31,65 @@
       </div>
 
       <div class="form-group">
-        <label>Nombre</label>
+        <label>Nombres</label>
         <input type="text" 
                 class="form-control"
                 placeholder="Nombre usuario"
-                [(ngModel)]="usuario.nombre"
-                name="nombre"
+                [(ngModel)]="usuario.nombres"
+                name="nombres"
                 required>
       </div>
 
       <div class="form-group">
-        <label>Apellidos</label>
+        <label>Paterno</label>
         <input type="text" 
                 class="form-control"
-                placeholder="Apellidos del usuario"
-                [(ngModel)]="usuario.apellidos"
-                name="apellidos"
+                placeholder="Paterno del usuario"
+                [(ngModel)]="usuario.paterno"
+                name="paterno"
                 required>
       </div>
+
+      <div class="form-group">
+        <label>Materno</label>
+        <input type="text" 
+                class="form-control"
+                placeholder="Materno del usuario"
+                [(ngModel)]="usuario.materno"
+                name="materno"
+                required>
+      </div>
+
+      <div class="form-group">
+        <label>C.I.</label>
+        <input type="text" 
+                class="form-control"
+                placeholder="Num. carnet del usuario"
+                [(ngModel)]="usuario.ci"
+                name="ci"
+                required>
+      </div>
+
+      <div class="form-group">
+        <label>Telefono Fijo</label>
+        <input type="text" 
+                class="form-control"
+                placeholder="Telefono Fijo del usuario"
+                [(ngModel)]="usuario.telefonofij"
+                name="telefonofij"
+                required>
+      </div>
+
+      <div class="form-group">
+        <label>Celular</label>
+        <input type="text" 
+                class="form-control"
+                placeholder="Celular del usuario"
+                [(ngModel)]="usuario.celular"
+                name="celular"
+                required>
+      </div>
+
 
       <div class="form-group">
         <label>Correo</label>
@@ -69,17 +110,7 @@
                 name="clave"
                 required>
       </div>
-
-      <div class="form-group">
-        <label>Telefono</label>
-        <input type="text" 
-                class="form-control"
-                placeholder="Telefono usuario"
-                [(ngModel)]="usuario.telefono"
-                name="telefono"
-                required>
-      </div>
-
+ 
       <hr>
       <div class="form-gropus text-center">
         <button type="submit"

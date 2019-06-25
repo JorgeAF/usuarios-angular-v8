@@ -44,9 +44,9 @@
                 pattern="[A-Za-z-a]{3,20}"
                 required
                 #nomb= "ngModel">
-        <div *ngIf="nomb.errors?.required"
+        <div *ngIf="nomb?.errors?.required"
         [ngClass]=" {  'invalid-feedback': nomb.errors?.required} "> <!-- marca como error en vscode-> normal en sublime txt -->
-          *
+          *Requerido
         </div>
         </div>
       </div>

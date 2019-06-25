@@ -11,7 +11,12 @@ import Swal from 'sweetalert2';
 @Component({
   selector: 'jor-usuario',
   templateUrl: './usuario.component.html',
-  styleUrls: ['./usuario.component.css']
+  styleUrls: ['./usuario.component.css'],
+  styles: [`
+    .ng-invalid.ng-touched:not(form){
+      border: 1px solid red;
+    }
+  `]
 })
 export class UsuarioComponent implements OnInit {
 
@@ -43,6 +48,9 @@ export class UsuarioComponent implements OnInit {
 
     if (form.invalid) {
       console.log('Formulario Invalido');
+      // console.log("Usuario",form);
+      // console.log("Usuario",form.value);
+      // console.log("Usuario",this.usuario);
       
       return;
     }

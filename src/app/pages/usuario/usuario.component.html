@@ -18,7 +18,7 @@
   <div class="col">
 
     <form (ngSubmit)="guardar( f )"
-          #f="ngForm" class="form-responsive">
+          #f="ngForm" class="form-responsive" novalidate="">
       <div class="form-group row">
         <label class="offset-1 col-2 col-form-label mr-3">Firebase ID</label>
         <div class="col-6">
@@ -32,15 +32,22 @@
         </div>
       </div>
 
-      <div class="form-group row">
+      <div class="form-group row has-danger">
         <label class="offset-1 col-2 col-form-label mr-3">Nombres</label>
         <div class="col-6">
         <input type="text" 
-                class="form-control"
+                class="form-control" 
+                [ngClass]=" { 'is-invalid': (nomb.errors?.required)&& nomb.touched} "
                 placeholder="Nombre usuario"
                 [(ngModel)]="usuario.nombres"
                 name="nombres"
-                required>
+                pattern="[A-Za-z-a]{3,20}"
+                required
+                #nomb= "ngModel">
+        <div *ngIf="nomb.errors?.required"
+        [ngClass]=" {  'invalid-feedback': nomb.errors?.required} "> <!-- marca como error en vscode-> normal en sublime txt -->
+          *
+        </div>
         </div>
       </div>
 
@@ -108,12 +115,18 @@
       <div class="form-group row">
         <label class="offset-1 col-2 col-form-label mr-3">Correo</label>
         <div class="col-6">
-          <input type="text" 
+          <input type="email" 
           class="form-control"
           placeholder="Correo usuario"
           [(ngModel)]="usuario.correo"
           name="correo"
-          required>
+          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+          required
+          #corre="ngModel">
+          <div *ngIf="corre?.errors?.required"
+                class="invalid-feedback">
+            *
+          </div>          
         </div>
       </div>
 
@@ -131,7 +144,8 @@
  
       <div class="form-group text-center">
         <!-- <hr> -->
-        <button type="submit"
+        <button [disabled]="!f.valid"
+                type="submit"
                 class="btn btn-primary w-30">
         <i class="fa fa-save"></i>
         Guardar

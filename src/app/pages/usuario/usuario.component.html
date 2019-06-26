@@ -1,156 +1,159 @@
+<div class="container">
+  <h1>Datos de Usuario</h1>
+  <hr>
 
-<h1>Datos del Usuario</h1>
-<hr>
-
-<div class="row text-right">
-  <div class="col">  
-    <button class="btn btn-danger"
-            routerLink="/usuarios">
-      <i class="fa fa-arrow-left"></i>
-      Regresar
-    </button>
+  <div class="row text-right">
+    <div class="col">  
+      <button class="btn btn-danger"
+              routerLink="/usuarios">
+        <i class="fa fa-arrow-left"></i>
+        Regresar
+      </button>
+    </div>
   </div>
-</div>
 
-<!-- Formulario -->
+  <!-- Formulario -->
 
-<div class=" row animated fadeIn faster mt-3">
-  <div class="col">
+  <div class=" row animated fadeIn faster mt-3">
+    <div class="col">
 
-    <form (ngSubmit)="guardar( f )"
-          #f="ngForm" class="form-responsive" novalidate="">
-      <div class="form-group row">
-        <label class="offset-1 col-2 col-form-label mr-3">Firebase ID</label>
-        <div class="col-6">
+      <form (ngSubmit)="guardar( f )"
+            #f="ngForm" class="form-responsive" novalidate="">
+        <div class="form-group row">
+          <label class="offset-1 col-2 col-form-label mr-3">Firebase ID</label>
+          <div class="col-6">
+            <input type="text" 
+            class="form-control"
+            placeholder="Firebase ID"
+            [(ngModel)]="usuario.id"
+            name="id"
+            disabled="disabled">
+            <small class="form-text text-muted">Generado desde Firebase</small>
+          </div>
+        </div>
+
+        <div class="form-group row has-danger">
+          <label class="offset-1 col-2 col-form-label mr-3">Nombres</label>
+          <div class="col-6">
           <input type="text" 
-          class="form-control"
-          placeholder="Firebase ID"
-          [(ngModel)]="usuario.id"
-          name="id"
-          disabled="disabled">
-          <small class="form-text text-muted">Generado desde Firebase</small>
+                  class="form-control" 
+                  [ngClass]=" { 'is-invalid': (nomb.errors?.required)&& nomb.touched} "
+                  placeholder="Nombre usuario"
+                  [(ngModel)]="usuario.nombres"
+                  name="nombres"
+                  pattern="[A-Za-z-a]{3,20}"
+                  required
+                  #nomb= "ngModel">
+          <div *ngIf="nomb?.errors?.required"
+          [ngClass]=" {  'invalid-feedback': nomb.errors?.required} "> <!-- marca como error en vscode-> normal en sublime txt -->
+            *Requerido
+          </div>
+          </div>
         </div>
-      </div>
 
-      <div class="form-group row has-danger">
-        <label class="offset-1 col-2 col-form-label mr-3">Nombres</label>
-        <div class="col-6">
-        <input type="text" 
-                class="form-control" 
-                [ngClass]=" { 'is-invalid': (nomb.errors?.required)&& nomb.touched} "
-                placeholder="Nombre usuario"
-                [(ngModel)]="usuario.nombres"
-                name="nombres"
-                pattern="[A-Za-z-a]{3,20}"
-                required
-                #nomb= "ngModel">
-        <div *ngIf="nomb?.errors?.required"
-        [ngClass]=" {  'invalid-feedback': nomb.errors?.required} "> <!-- marca como error en vscode-> normal en sublime txt -->
-          *Requerido
-        </div>
-        </div>
-      </div>
-
-      <div class="form-group row">
-        <label class="offset-1 col-2 col-form-label mr-3">Paterno</label>
-        <div class="col-6">
-        <input type="text" 
-                class="form-control"
-                placeholder="Paterno del usuario"
-                [(ngModel)]="usuario.paterno"
-                name="paterno"
-                required>
-        </div>
-      </div>
-
-      <div class="form-group row">
-        <label class="offset-1 col-2 col-form-label mr-3">Materno</label>
-        <div class="col-6">
+        <div class="form-group row">
+          <label class="offset-1 col-2 col-form-label mr-3">Paterno</label>
+          <div class="col-6">
           <input type="text" 
-          class="form-control"
-          placeholder="Materno del usuario"
-          [(ngModel)]="usuario.materno"
-          name="materno"
-          required>
+                  class="form-control"
+                  placeholder="Paterno del usuario"
+                  [(ngModel)]="usuario.paterno"
+                  name="paterno"
+                  required>
+          </div>
         </div>
-      </div>
 
-      <div class="form-group row">
-        <label class="offset-1 col-2 col-form-label mr-3">C.I.</label>
-        <div class="col-6">
-          <input type="text" 
-          class="form-control"
-          placeholder="Num. carnet del usuario"
-          [(ngModel)]="usuario.ci"
-          name="ci"
-          required>
+        <div class="form-group row">
+          <label class="offset-1 col-2 col-form-label mr-3">Materno</label>
+          <div class="col-6">
+            <input type="text" 
+            class="form-control"
+            placeholder="Materno del usuario"
+            [(ngModel)]="usuario.materno"
+            name="materno"
+            required>
+          </div>
         </div>
-      </div>
 
-      <div class="form-group row">
-        <label class="offset-1 col-2 col-form-label mr-3">Telefono Fijo</label>
-        <div class="col-6">
-          <input type="text" 
-          class="form-control"
-          placeholder="Telefono Fijo del usuario"
-          [(ngModel)]="usuario.telefonofij"
-          name="telefonofij"
-          required>
+        <div class="form-group row">
+          <label class="offset-1 col-2 col-form-label mr-3">C.I.</label>
+          <div class="col-6">
+            <input type="text" 
+            class="form-control"
+            placeholder="Num. carnet del usuario"
+            [(ngModel)]="usuario.ci"
+            name="ci"
+            required>
+          </div>
         </div>
-      </div>
 
-      <div class="form-group row">
-        <label class="offset-1 col-2 col-form-label mr-3">Celular</label>
-        <div class="col-6">
-          <input type="text" 
-          class="form-control"
-          placeholder="Celular del usuario"
-          [(ngModel)]="usuario.celular"
-          name="celular"
-          required>
+        <div class="form-group row">
+          <label class="offset-1 col-2 col-form-label mr-3">Telefono Fijo</label>
+          <div class="col-6">
+            <input type="text" 
+            class="form-control"
+            placeholder="Telefono Fijo del usuario"
+            [(ngModel)]="usuario.telefonofij"
+            name="telefonofij"
+            pattern="[0-9]{7,8}"
+            required>
+          </div>
         </div>
-      </div>
 
-
-      <div class="form-group row">
-        <label class="offset-1 col-2 col-form-label mr-3">Correo</label>
-        <div class="col-6">
-          <input type="email" 
-          class="form-control"
-          placeholder="Correo usuario"
-          [(ngModel)]="usuario.correo"
-          name="correo"
-          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
-          required
-          #corre="ngModel">
-          <div *ngIf="corre?.errors?.required"
-                class="invalid-feedback">
-            *
-          </div>          
+        <div class="form-group row">
+          <label class="offset-1 col-2 col-form-label mr-3">Celular</label>
+          <div class="col-6">
+            <input type="text" 
+            class="form-control"
+            placeholder="Celular del usuario"
+            [(ngModel)]="usuario.celular"
+            name="celular"
+            pattern="[0-9]{8,15}"
+            required>
+          </div>
         </div>
-      </div>
 
-      <div class="form-group row">
-        <label class="offset-1 col-2 col-form-label mr-3">Clave</label>
-        <div class="col-6">
-          <input type="text" 
-          class="form-control"
-          placeholder="Clave usuario"
-          [(ngModel)]="usuario.clave"
-          name="clave"
-          required>
+
+        <div class="form-group row">
+          <label class="offset-1 col-2 col-form-label mr-3">Correo</label>
+          <div class="col-6">
+            <input type="email" 
+            class="form-control"
+            placeholder="Correo usuario"
+            [(ngModel)]="usuario.correo"
+            name="correo"
+            pattern="[A-Za-z-a0-9._]+@[A-Za-z-a]+\.[a-z.]{2,6}$"
+            required
+            #corre="ngModel">
+            <div *ngIf="corre?.errors?.required"
+                  class="invalid-feedback">
+              *
+            </div>          
+          </div>
         </div>
-      </div>
- 
-      <div class="form-group text-center">
-        <!-- <hr> -->
-        <button [disabled]="!f.valid"
-                type="submit"
-                class="btn btn-primary w-30">
-        <i class="fa fa-save"></i>
-        Guardar
-        </button>
-      </div>
-    </form>
+
+        <div class="form-group row">
+          <label class="offset-1 col-2 col-form-label mr-3">Clave</label>
+          <div class="col-6">
+            <input type="password" 
+            class="form-control"
+            placeholder="Clave usuario"
+            [(ngModel)]="usuario.clave"
+            name="clave"
+            required>
+          </div>
+        </div>
+  
+        <div class="form-group text-center">
+          <!-- <hr> -->
+          <button [disabled]="!f.valid"
+                  type="submit"
+                  class="btn btn-primary w-30">
+          <i class="fa fa-save"></i>
+          Guardar
+          </button>
+        </div>
+      </form>
+    </div>
   </div>
 </div>

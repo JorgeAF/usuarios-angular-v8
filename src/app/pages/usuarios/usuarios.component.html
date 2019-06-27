@@ -38,11 +38,11 @@
             <th scope="col">Paterno</th>
             <th scope="col">Materno</th>
             <th scope="col">C.I.</th>
-            <th scope="col">Telefono Fijo</th>
+            <th scope="col">Tel. Fijo</th>
             <th scope="col">Celular</th>
             <th scope="col">Correo</th>
             <th scope="col">Clave</th>
-            <th scope="col">Tools</th>
+            <th scope="col">Acciones</th>
           </tr>
         </thead>
         <tbody>
@@ -58,17 +58,17 @@
             <td>{{ usuario.correo }}</td>
             <td>{{ usuario.clave }}</td>
             <td>
+              <div class="row">
               <button class="btn btn-info "
                       [routerLink]="['/usuario',usuario.id]">
                 <i class="fa fa-pen"></i>
               </button>
-
-              <button class="btn btn-danger  mt-1"
+            
+              <button class="btn btn-danger ml-1"
                       (click)="borrarUsuario(usuario,i) ">
                 <i class="fa fa-trash"></i>
               </button>
-
-
+            </div>
             </td>
           </tr>
         </tbody>

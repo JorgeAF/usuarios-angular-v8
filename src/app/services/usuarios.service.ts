@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { UsuarioModel } from '../models/usuario.model';
 import { map,delay } from 'rxjs/operators';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -13,6 +14,7 @@ export class UsuariosService {
 
   constructor(private http:HttpClient) {}
 
+  
   crearUsuario( usuario: UsuarioModel ){
     return this.http.post(`${ this.url }/usuarios.json`, usuario)
           .pipe(

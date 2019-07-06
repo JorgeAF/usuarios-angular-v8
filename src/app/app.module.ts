@@ -9,12 +9,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { UsuarioComponent } from './pages/usuario/usuario.component';
 import { UsuariosComponent } from './pages/usuarios/usuarios.component';
+import { HomeComponent } from './pages/home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     UsuarioComponent,
-    UsuariosComponent
+    UsuariosComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

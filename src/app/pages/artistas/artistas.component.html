@@ -1,0 +1,91 @@
+
+<div class="container" style="margin-top:90px">
+  <div class="row">
+    <div class="col-md-8">
+      <h2>Lista de Artistas ó Grupos</h2>
+    </div>
+    <div class="col-md-4 ">
+      <form class="form-inline ml-auto">
+        <input class="form-control ml-md-auto mr-md-2" type="text" placeholder="Search" >
+        <button class="btn btn-primary mt-md-2" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+<hr>
+
+<div class="row">
+  <div class="col">
+    <button routerLink="" 
+            class="btn btn-primary">
+      <i class="fa fa-print"></i>
+      Imprimir
+    </button>
+  </div>
+  <div class="col text-right">
+    <button routerLink="/artista/nuevo" 
+            class="btn btn-primary">
+      <i class="fa fa-plus"></i>
+      Agregar
+    </button>
+  </div>
+</div>
+<div class="table-sm">
+  <div class="table-responsive-sm">
+    <table  *ngIf="!cargando && artistas.length > 0 "
+            class="table mt-3 animated fadeIn faster ">
+      <thead class="thead-dark ">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Nombres</th>
+          <th scope="col">Genero Musical</th>
+          <th scope="col">Celular</th>
+          <th scope="col">Correo</th>
+          <th scope="col">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let artista of artistas; let i = index"
+            class="">
+          <th scope="row">{{ i + 1 }}</th>
+          <td>{{ artista.nombres }}</td>
+          <td>{{ artista.genero }}</td>
+          <td>{{ artista.celular }}</td>
+          <td>{{ artista.correo }}</td>
+          <td>
+            <div class="row">
+            <button class="btn btn-info "
+                    [routerLink]="['/artista',artista.id]">
+              <i class="fa fa-pen"></i>
+            </button>
+          
+            <button class="btn btn-danger ml-1"
+                    (click)="borrarArtista(artista,i) ">
+              <i class="fa fa-trash"></i>
+            </button>
+          </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div  *ngIf="!cargando && artistas.length ===0 "
+      class="alert alert-warning text-center mt-3 animated fadeIn faster">
+  <h4 class="alert-heading">No hay registros</h4>
+  <p>
+    <i class="fa fa-exclamation fa-2x"></i>
+  </p>
+</div>
+
+<div *ngIf="cargando"
+    class="alert alert-info text-center mt-3 animated fadeIn faster">
+  <h4 class="alert-heading">Cargando</h4>
+  <p>
+    <i class="fa fa-sync-alt fa-spin fa-2x"></i>
+  </p>
+  <p class="mb-0">
+    Espere por favor
+  </p>
+</div>
+</div>
